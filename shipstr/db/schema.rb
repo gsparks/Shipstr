@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 2019_07_28_200636) do
 
   create_table "shipping_service_providers", force: :cascade do |t|
     t.string "company_name"
-    t.integer "flat_shipping_rate_cents"
+    t.integer "rate_cents"
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "common_flat_shipping_rate_cents"
+    t.integer "common_rate_cents", default: 0, null: false
   end
 
 end

@@ -1,4 +1,7 @@
 class ShippingRate < ApplicationRecord
+    
+    # Concern to update the common rate (usd) before save.
+    include CurrencyConversionConcern
 
     belongs_to :shipping_service_provider, class_name: 'ShippingServiceProvider', foreign_key: 'shipping_service_provider_id'
 
@@ -10,19 +13,11 @@ class ShippingRate < ApplicationRecord
     monetize :rate_cents, with_model_currency: :currency
     monetize :common_rate_cents, with_model_currency: :usd
 
-    before_save :calculate_common_rate
-
-    def calculate_common_rate
-      common_cents = rate.exchange_to("USD").cents
-      # ^ I promise that wasn't supposed to be a pun.
-      self.common_rate_cents = common_cents
-    end
-
-    def native_rate
+    def native_kilo_rate
         return rate.format(with_currency: true)
     end
 
-    def common_usd_rate
+    def common_kilo_rate
         return common_rate.format(with_currency: true)
     end
 
