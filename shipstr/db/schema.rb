@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_27_213936) do
+ActiveRecord::Schema.define(version: 2019_07_28_192746) do
 
   create_table "shipping_service_providers", force: :cascade do |t|
     t.string "company_name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_07_27_213936) do
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "common_flat_shipping_rate_cents"
   end
 
 end
