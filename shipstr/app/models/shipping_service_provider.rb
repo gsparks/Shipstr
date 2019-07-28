@@ -1,5 +1,7 @@
 class ShippingServiceProvider < ApplicationRecord
 
+    has_many :shipping_rates, dependent: :destroy, class_name: 'ShippingRate', foreign_key: 'shipping_service_provider_id'
+
     validates :company_name, presence: true
     validates :flat_shipping_rate_cents, presence: true
     validates :currency, presence: true
@@ -15,11 +17,11 @@ class ShippingServiceProvider < ApplicationRecord
       self.common_flat_shipping_rate_cents = common_cents
     end
 
-    def flat_rate
+    def native_flat_rate
         return flat_shipping_rate.format(with_currency: true)
     end
 
-    def common_flat_rate
+    def common_usd_flat_rate
         return common_flat_shipping_rate.format(with_currency: true)
     end
 

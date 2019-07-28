@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_192746) do
+ActiveRecord::Schema.define(version: 2019_07_28_200636) do
+
+  create_table "shipping_rates", force: :cascade do |t|
+    t.integer "rate_cents"
+    t.string "currency"
+    t.integer "common_rate_cents", default: 0, null: false
+    t.string "origin"
+    t.string "destination"
+    t.integer "shipping_service_provider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_service_provider_id"], name: "index_shipping_rates_on_shipping_service_provider_id"
+  end
 
   create_table "shipping_service_providers", force: :cascade do |t|
     t.string "company_name"

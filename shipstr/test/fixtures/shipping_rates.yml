@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rate_cents: 1
+  currency: MyString
+  common_rate_cents: 1
+  origin: MyString
+  destination: MyString
+  belongs_to: 
+
+two:
+  rate_cents: 1
+  currency: MyString
+  common_rate_cents: 1
+  origin: MyString
+  destination: MyString
+  belongs_to: 
