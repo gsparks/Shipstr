@@ -8,6 +8,11 @@ class ShippingServiceProvidersController < ApplicationController
     render json: @shipping_service_providers
   end
 
+  def export
+    @export_data = ShippingServiceProvider.all
+    render :json => @export_data.to_json(:include => :shipping_rates)
+  end
+
   # GET /shipping_service_providers/1
   def show
     render json: @shipping_service_provider

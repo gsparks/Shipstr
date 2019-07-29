@@ -1,16 +1,30 @@
 <template>
   <div>
     <h1>Providers List</h1>
-    <ul>
-      <li class="title">
-        <div>Company Name</div>
-        <div>Total</div>
-      </li>
-      <li v-for="p in providers" :key="p.company_name">
-        <div>{{ p.company_name }}</div>
-        <div>{{ p.rate_cents / 100 }} {{ p.currency }}</div>
-      </li>
-    </ul>
+    <table border="1">
+      <tr>
+        <td><b>Company Name</b></td>
+        <td><b>Flat Rate</b></td>
+        <td><b>Flat Rate USD</b></td>
+        <td><b>Rate per Kilo >>></b></td>
+      </tr>
+      <tr v-for="p in providers" :key="p.id">
+        <td>{{ p.company_name }}</td>
+        <td>{{ (p.rate_cents / 100).toFixed(2) }} {{ p.currency }}</td>
+        <td>{{ (p.common_rate_cents / 100).toFixed(2) }} USD</td>
+        <td v-for="r in p.shipping_rates">
+          <table>
+            <tr>
+              <td>{{ r.origin }}</td>
+              <td> > </td>
+              <td>{{ r.destination }}</td>
+              <td>{{ (r.rate_cents / 100).toFixed(2) }} {{ p.currency }}</td>
+              <td>{{ (r.common_rate_cents / 100).toFixed(2) }} USD</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -33,13 +47,9 @@ export default {
     }
   },
   created() {
-  axios.get('http://localhost:3000/shipping_service_providers') 
+  axios.get('http://localhost:3000') 
   .then(response => {
     this.providers = response.data
-  })
-  axios.get('http://localhost:3000/shipping_rates') 
-  .then(response => {
-    this.rates = response.data
   })
  .catch(e => {
   this.error.push(e)
