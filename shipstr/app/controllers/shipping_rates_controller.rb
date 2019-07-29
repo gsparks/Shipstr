@@ -5,7 +5,7 @@ class ShippingRatesController < ApplicationController
   def index
     @shipping_rates = ShippingRate.all
 
-    render json: @shipping_rates
+    render html: @shipping_rates
   end
 
   # GET /shipping_rates/1

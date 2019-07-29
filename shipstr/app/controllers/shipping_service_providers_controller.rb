@@ -4,8 +4,6 @@ class ShippingServiceProvidersController < ApplicationController
   # GET /shipping_service_providers
   def index
     @shipping_service_providers = ShippingServiceProvider.all
-
-    render json: @shipping_service_providers
   end
 
   def export

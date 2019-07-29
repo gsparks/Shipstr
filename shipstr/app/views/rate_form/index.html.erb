@@ -1,0 +1,17 @@
+<table>
+    <thead>
+        <th>Company Name</th>
+        <th>Flat Rate</th>
+        <th>Flat Rate USD</th>
+    </thead>
+    <tbody>
+<% @shipping_service_providers.each do |ssp| %>
+    <tr>
+        <td><%= ssp.company_name %></td>
+        <td><%= ssp.native_flat_rate %></td>
+        <td><%= ssp.common_flat_rate %></td>
+        <td><%= link_to "Edit", '/rate_form/update' %></td>
+    </tr>
+<% end %>
+    </tbody>
+</table>
