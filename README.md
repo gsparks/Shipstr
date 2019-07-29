@@ -75,3 +75,31 @@ We encourage you to demonstrate your workflow via Git commits with good messages
 We do not expect you to write tests for this in the interest of time.
 
 When you are done, please either zip up your repo and email it to engineering@tryfleet.com or push it up to Github. If you need to clarify anything regarding this challenge, feel free to email us.
+
+# Instructions from Greg
+
+Thanks for taking the time to look this over!
+
+The rails app is located in the shipstr directory. Start the app on port 3000 with the following commands...
+
+```
+cd shipstr
+bundle install
+rake db:drop
+rake db:create
+rake db:migrate
+rake db:seed
+rails server
+```
+
+To start the Vue app:
+
+```
+cd vue-spa
+npm i
+npm run serve
+```
+
+Navigate to http://localhost:8080/ to view shipping data.
+
+Thx!
